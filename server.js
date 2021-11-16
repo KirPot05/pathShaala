@@ -7,7 +7,12 @@ const express = require('express');
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
-const expressRouter = require('./routes/index');
+const bodyParser = require('body-parser');
+
+// Routers
+const indexRouter = require('./routes/index');
+const authorRouter = require('./routes/authors');
+
 
 
 // Basic Set Up
@@ -18,7 +23,14 @@ app.set('layout', 'layouts/layout');
 
 app.use(expressLayouts);
 app.use(express.static('public'));
-app.use('/', expressRouter);
+app.use(bodyParser.urlencoded({limit: "10mb", extended: false}));
+
+
+// Setting Up Routes
+app.use('/', indexRouter);
+app.use('/authors', authorRouter);
+
+
 
 
 // DB Stuff
