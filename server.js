@@ -8,7 +8,7 @@ const app = express();
 const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
 const bodyParser = require('body-parser');
-
+const methodOverride = require('method-override');
 
 
 // Routers
@@ -27,7 +27,7 @@ app.set('layout', 'layouts/layout');
 app.use(expressLayouts);
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({limit: "10mb", extended: false}));
-
+app.use(methodOverride('_method'));
 
 // Setting Up Routes
 app.use('/', indexRouter);
