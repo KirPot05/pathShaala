@@ -3,6 +3,8 @@ const router = express.Router();
 const Author = require('../models/author');
 const Book = require('../models/book');
 
+
+
 // All Authors Route
 router.get('/', async (req, res) =>{
 
@@ -15,17 +17,21 @@ router.get('/', async (req, res) =>{
         res.render('authors/index', {
             authors: authors, 
             searchOptions: req.query
-        })
+        });
     } catch {
         res.redirect('/');   
     }
 });
 
 
+
+
 // New Author Route
 router.get('/new', (req, res) =>{
     res.render('authors/new', {author: new Author()});
 });
+
+
 
 
 // Create Author Route
@@ -71,6 +77,8 @@ router.get('/:id', async (req, res) =>{
     
 });
 
+
+
 // Edit Author Route
 router.get('/:id/edit', async (req, res) =>{
 
@@ -83,6 +91,7 @@ router.get('/:id/edit', async (req, res) =>{
     }
 
 });
+
 
 
 // Update Author Route
@@ -110,6 +119,8 @@ router.put('/:id', async (req, res) =>{
 });
 
 
+
+// Delete Authors Route
 router.delete('/:id', async (req, res) =>{
     
     let author;
